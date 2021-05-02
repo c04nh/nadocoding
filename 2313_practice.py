@@ -907,7 +907,7 @@ class BuildingUnit(Unit):
         pass
 
 
-# 서플라이 디폿 : 건물, 1개 건물 = 8 유닛.
+# 서플라이 디폿 : 건물, 1개 건물 = 8 유닛
 supply_depot = BuildingUnit("서플라이 디폿", 500, "7시")  # 체력 500, 생성 위치 7시
 
 
