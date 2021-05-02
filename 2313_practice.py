@@ -584,7 +584,6 @@ weight = round(std_weight(height / 100, gender), 2)
 print("키 {0}cm {1}의 표준 체중은 {2}kg 입니다.".format(height, gender, weight))
 '''
 
-
 # 클래스
 # 마린 : 공격 유닛, 군인. 총을 쏠 수 있음
 # name = "마린"  # 유닛의 이름
@@ -948,6 +947,9 @@ print("키 {0}cm {1}의 표준 체중은 {2}kg 입니다.".format(height, gender
 
 # 스타크래프트 프로젝트 전반전
 # 일반 유닛
+from random import *
+
+
 class Unit:
     def __init__(self, name, hp, speed):
         self.name = name
@@ -1054,3 +1056,68 @@ class Wraith(FlyableAttackUnit):
         else:
             print("{0} : 클로킹 모드 설정합니다.".format(self.name))
             self.cloaked = True
+
+
+# 스타크래프트 프로젝트 후반전
+# 게임 시작
+def game_start():
+    print("[알림] 새로운 게임을 시작합니다.")
+
+
+# 게임 종료
+def game_over():
+    print("Player : gg")  # good game
+    print("[Player] 님이 게임에서 퇴장하셨습니다.")
+
+
+# 실제 게임 진행
+game_start()
+
+# 마린 3기 생성
+m1 = Marine()
+m2 = Marine()
+m3 = Marine()
+
+# 탱크 2기 생성
+t1 = Tank()
+t2 = Tank()
+
+# 레이스 1기 생성
+w1 = Wraith()
+
+# 유닛 일괄 관리 (생성된 모든 유닛 append)
+attack_units = []
+attack_units.append(m1)
+attack_units.append(m2)
+attack_units.append(m3)
+attack_units.append(t1)
+attack_units.append(t1)
+attack_units.append(w1)
+
+# 전군 이동
+for unit in attack_units:
+    unit.move("1시")
+
+# 탱크 시즈모드 개발
+Tank.siege_developed = True
+print("[알림] 탱크 시즈 모드 개발이 완료되었습니다.")
+
+# 공격 모드 준비 (마린 : 스팀팩, 탱크 : 시즈모드, 레이스 : 클로킹)
+for unit in attack_units:
+    if isinstance(unit, Marine):  # Marine 의 인스턴스이면 스팀팩
+        unit.stimpack()
+    elif isinstance(unit, Tank):  # Tank 의 인스턴스이면 시즈모드
+        unit.set_siege_mode()
+    elif isinstance(unit, Wraith):  # Wraith 의 인스턴스이면 클로킹
+        unit.cloaking()
+
+# 전군 공격
+for unit in attack_units:
+    unit.attack("1시")
+
+# 전군 피해
+for unit in attack_units:
+    unit.damaged(randint(5, 20))  # 공격은 랜덤으로 받음 (5 ~ 20)
+
+# 게임 종료
+game_over()
