@@ -584,6 +584,7 @@ weight = round(std_weight(height / 100, gender), 2)
 print("키 {0}cm {1}의 표준 체중은 {2}kg 입니다.".format(height, gender, weight))
 '''
 
+
 # 클래스
 # 마린 : 공격 유닛, 군인. 총을 쏠 수 있음
 # name = "마린"  # 유닛의 이름
@@ -649,25 +650,53 @@ print("키 {0}cm {1}의 표준 체중은 {2}kg 입니다.".format(height, gender
 # marine3 = Unit("마린", 40) # 전달값 3개 중 2개만 넘김
 
 # 멤버변수
-class Unit:
-    def __init__(self, name, hp, damage): # 3개의 전달값
-        self.name = name # 멤버변수 name
-        self.hp = hp # 멤버변수 hp
-        self.damage = damage # 멤버변수 damage
-        print("{0} 유닛이 생성되었습니다.".format(self.name))
-        print("체력 {0}, 공격력 {1}".format(self.hp, self.damage))
+# class Unit:
+#     def __init__(self, name, hp, damage): # 3개의 전달값
+#         self.name = name # 멤버변수 name
+#         self.hp = hp # 멤버변수 hp
+#         self.damage = damage # 멤버변수 damage
+#         print("{0} 유닛이 생성되었습니다.".format(self.name))
+#         print("체력 {0}, 공격력 {1}".format(self.hp, self.damage))
 
 
 # 레이스 : 공중 유닛, 비행기. 클로킹 (상대방에게 보이지 않음)
-wraith1 = Unit("레이스", 80, 5) # 체력 80, 공격력 5
-print("유닛 이름 : {0}, 공격력 : {1}".format(wraith1.name, wraith1.damage)) # 멤버변수 접근
-# 마인드 컨트롤 : 상대방 유닛을 내 것으로 만드는 것 (빼앗음)
-wraith2 = Unit("빼앗은 레이스", 80, 5)
-wraith2.cloaking = True # 빼앗은 레이스만을 위한 특별한 멤버변수 정의
+# wraith1 = Unit("레이스", 80, 5)  # 체력 80, 공격력 5
+# print("유닛 이름 : {0}, 공격력 : {1}".format(wraith1.name, wraith1.damage))  # 멤버변수 접근
+# # 마인드 컨트롤 : 상대방 유닛을 내 것으로 만드는 것 (빼앗음)
+# wraith2 = Unit("빼앗은 레이스", 80, 5)
+# wraith2.cloaking = True  # 빼앗은 레이스만을 위한 특별한 멤버변수 정의
+#
+# if wraith2.cloaking == True:  # 클로킹 상태라면?
+#     print("{0}는 현재 클로킹 상태입니다.".format(wraith2.name))
 
-if wraith2.cloaking == True: # 클로킹 상태라면?
-    print("{0}는 현재 클로킹 상태입니다.".format(wraith2.name))
 
-#에러
+# 에러
 # if wraith1.cloaking == True: # 우리가 만든 레이스 클로킹 여부
 #     print("{0}는 현재 클로킹 상태입니다.".format(wraith1.name))
+
+# 메소드
+class AttackUnit:  # 공격 유닛
+    def __init__(self, name, hp, damage):
+        self.name = name
+        self.hp = hp
+        self.damage = damage
+
+    def attack(self, location):  # 공격 방향
+        print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]" \
+              .format(self.name, location, self.damage))  # 공간이 좁아서 2줄에 걸쳐 출력
+
+    def damaged(self, damage):  # damage 만큼 유닛 피해
+        print("{0} : {1} 데미지를 입었습니다.".format(self.name, damage))  # 데미지 정보 출력
+        self.hp -= damage  # 유닛의 체력에서 전달받은 damage 만큼 감소
+        print("{0} : 현재 체력은 {1} 입니다.".format(self.name, self.hp))  # 남은 체력 출력
+        if self.hp <= 0:  # 남은 체력이 0 이하이면?
+            print("{0} : 파괴되었습니다.".format(self.name))  # 유닛 파괴 처리
+
+
+# 파이어뱃 : 공격 유닛, 화염방사기.
+firebat1 = AttackUnit("파이어뱃", 50, 16)  # 체력 50, 공격력 16
+firebat1.attack("5시")  # 5시 방향으로 공격 명령
+
+# 공격 2번 받는다고 가정
+firebat1.damaged(25)  # 남은 체력 25
+firebat1.damaged(25)  # 남은 채력 0
