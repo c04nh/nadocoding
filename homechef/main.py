@@ -22,7 +22,8 @@ def main():
             # 레시피 추가
             recipebook.add_recipe()
         elif menu == '3':
-            return  # 재료 검색
+            # 재료 검색
+            recipebook.search_whatin()
         elif menu == '4':
             # 레시피 모음
             recipebook.show_all_recipe()

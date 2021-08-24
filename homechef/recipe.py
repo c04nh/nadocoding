@@ -45,7 +45,7 @@ class Recipe:
         self.set_quantity()
 
     def __str__(self):
-        return f'레시피: {self.name}\n양: {self.quantity}인분\n재료: {self.whatin}\n시간: {self.time}분\n정보: {self.info}\n링크: {self.link}'
+        return f'레시피: {self.name}\n재료: {self.whatin}\n양: {self.quantity}인분\n시간: {self.time}분\n정보: {self.info}\n링크: {self.link}'
 
 
 # 김치찌개 = Recipe('김치찌개')
