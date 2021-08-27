@@ -975,7 +975,7 @@ price(5)
 
 # 11-2
 import travel.thailand
-# import travel.thailand.ThailandPackage
+# import travel1.thailand.ThailandPackage
 trip_to = travel.thailand.ThailandPackage()
 trip_to.detail()
 

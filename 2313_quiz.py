@@ -312,15 +312,15 @@ import 되길 원하는 걸 공개로 설정
 Quiz5-5. 지금 파이썬 파일을 직접실행할 때만 실행되고, 다른 모듈에서 import할 때는 실행되지 않도록 하는 제어문은?
 if __name__ == "__main__"
 
-Quiz5-6. travel 패키지(폴더) 안에 vietnam.py 모듈(파일) 안의 VietnamPackage 클래스를 생성하고 detail 함수를 호출하는 < 가 >, < 나 >, < 다 > 에 들어갈 각 방법은?
-import travel.vietnam
-travel.vietnam.VietnamPackage()
+Quiz5-6. travel1 패키지(폴더) 안에 vietnam.py 모듈(파일) 안의 VietnamPackage 클래스를 생성하고 detail 함수를 호출하는 < 가 >, < 나 >, < 다 > 에 들어갈 각 방법은?
+import travel1.vietnam
+travel1.vietnam.VietnamPackage()
 
 
-from travel import vietnam
+from travel1 import vietnam
 vietnam.VietnamPackage()
 
 
-from travel.vietnam import VietnamPackage
+from travel1.vietnam import VietnamPackage
 VietnamPackage()
 '''
